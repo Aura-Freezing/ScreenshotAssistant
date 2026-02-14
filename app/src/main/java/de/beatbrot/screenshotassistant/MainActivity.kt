@@ -15,6 +15,7 @@ import androidx.annotation.AnimRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.Observer
+import com.theartofdev.edmodo.cropper.CropImageView
 import de.beatbrot.screenshotassistant.databinding.ActivityMainBinding
 import de.beatbrot.screenshotassistant.sheets.ModalSettingsSheet
 import de.beatbrot.screenshotassistant.sheets.drawsettings.DrawSettingsSheet
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity() {
                     v.imagePainter.setImageBitmap(newBitmap)
                     animateImageView(v.imagePainter)
                 }
+                null -> { /* no-op */ }
             }
         })
 
@@ -127,6 +129,7 @@ class MainActivity : AppCompatActivity() {
                     viewModel.cropRect.value = null
                     showBottomSheet()
                 }
+                null -> { /* no-op */ }
                 else -> throw UnsupportedOperationException()
             }
         })
