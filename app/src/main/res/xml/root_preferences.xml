@@ -31,9 +31,9 @@
         android:defaultValue="PNG"
         android:entries="@array/image_formats"
         android:entryValues="@array/image_formats"
-        android:icon="@drawable/ic_format_shapes_unfocused_24dp"
         android:key="image_format"
         android:title="@string/image_format"
+        app:icon="@drawable/ic_format_shapes_unfocused_24dp"
         app:useSimpleSummaryProvider="true" />
 
 </PreferenceScreen>

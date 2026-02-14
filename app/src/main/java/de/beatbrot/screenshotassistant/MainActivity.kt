@@ -15,7 +15,6 @@ import androidx.annotation.AnimRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.Observer
-import com.theartofdev.edmodo.cropper.CropImageView
 import de.beatbrot.screenshotassistant.databinding.ActivityMainBinding
 import de.beatbrot.screenshotassistant.sheets.ModalSettingsSheet
 import de.beatbrot.screenshotassistant.sheets.drawsettings.DrawSettingsSheet
