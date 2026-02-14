@@ -14,16 +14,19 @@
         <activity
             android:name=".MainActivity"
             android:excludeFromRecents="true"
+            android:exported="false"
             android:noHistory="true"
             android:theme="@style/AppTheme.Translucent" />
         <activity
             android:name=".AboutActivity"
             android:excludeFromRecents="true"
+            android:exported="false"
             android:noHistory="true"
             android:theme="@style/AppTheme.AboutDialog" />
 
         <service
             android:name=".voice.InteractionService"
+            android:exported="true"
             android:permission="android.permission.BIND_VOICE_INTERACTION">
             <meta-data
                 android:name="android.voice_interaction"

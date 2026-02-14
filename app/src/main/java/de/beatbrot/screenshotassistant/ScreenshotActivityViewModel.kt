@@ -49,6 +49,7 @@ class ScreenshotActivityViewModel(application: Application) : AndroidViewModel(a
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = imageFormat.mimeType
             putExtra(Intent.EXTRA_STREAM, croppedUri)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
 
         _shareIntent.postValue(intent)
@@ -58,7 +59,7 @@ class ScreenshotActivityViewModel(application: Application) : AndroidViewModel(a
         val scrFile = createScreenshotFile()
 
         FileOutputStream(scrFile).use { stream ->
-            croppedImage.compress(Bitmap.CompressFormat.JPEG, imageQuality, stream)
+            croppedImage.compress(imageFormat, imageQuality, stream)
         }
 
         return FileProvider.getUriForFile(context, AUTHORITY_NAME, scrFile)
