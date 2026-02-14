@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         if (imgPath != null) {
             loadInitialImage(imgPath)
         } else {
-            Toast.makeText(baseContext, R.string.error_no_screenshot, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.error_no_screenshot, Toast.LENGTH_SHORT).show()
             finish()
         }
     }
@@ -63,11 +63,11 @@ class MainActivity : AppCompatActivity() {
         v.drawButton.setOnClickListener { viewModel.editingMode.value = EditingMode.PAINT }
 
         v.menuButton.setOnClickListener {
-            val popMenu = PopupMenu(baseContext, it)
+            val popMenu = PopupMenu(this, it)
             popMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.settings_item -> showSettings()
-                    R.id.about_item -> startActivity(Intent(baseContext, AboutActivity::class.java))
+                    R.id.about_item -> startActivity(Intent(this, AboutActivity::class.java))
                     else -> throw IllegalArgumentException()
                 }
                 true
@@ -91,6 +91,7 @@ class MainActivity : AppCompatActivity() {
                     v.imagePainter.setImageBitmap(newBitmap)
                     animateImageView(v.imagePainter)
                 }
+                null -> { /* no-op */ }
             }
         })
 
@@ -105,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.shareIntent.observe(this, Observer { intent ->
-            startActivity(Intent.createChooser(intent, baseContext.getString(R.string.share_image)))
+            startActivity(Intent.createChooser(intent, getString(R.string.share_image)))
         })
 
         viewModel.editingMode.observe(this, Observer { newState ->
@@ -127,6 +128,7 @@ class MainActivity : AppCompatActivity() {
                     viewModel.cropRect.value = null
                     showBottomSheet()
                 }
+                null -> { /* no-op */ }
                 else -> throw UnsupportedOperationException()
             }
         })
@@ -175,7 +177,7 @@ class MainActivity : AppCompatActivity() {
         @AnimRes animRes: Int,
         crossinline onDone: () -> Unit
     ) {
-        val anim = AnimationUtils.loadAnimation(baseContext, animRes)
+        val anim = AnimationUtils.loadAnimation(this, animRes)
         anim.setAnimationListener(object : OpenAnimationListener {
             override fun onAnimationEnd(animation: Animation?) {
                 onDone()
